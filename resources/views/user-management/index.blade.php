@@ -7,7 +7,7 @@
         <div class="card-header pb-0">
           <h6>Authors table</h6>
         </div>
-        <div class="card-body px-0 pt-0 pb-2">
+        <div class="c px-0 pt-0 pb-2">
           <div class="table-responsive p-0">
             <table class="table align-items-center mb-0">
               <thead>
@@ -50,6 +50,7 @@
                     </td>
                     <td class="align-middle">
                         <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('users.destroy', $user->id) }}" method="POST">
+                            <a href="{{ route('users.show', $user->id) }}" class="btn btn-xs btn-info"> <i class="fa fa-eye"></i> </a>
                             <a href="{{ route('users.edit', $user->id) }}" class="btn btn-xs btn-primary"> <i class="fa fa-edit"></i> </a>
                             @csrf
                             @method('DELETE')

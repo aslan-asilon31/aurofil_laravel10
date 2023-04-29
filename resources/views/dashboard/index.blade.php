@@ -107,9 +107,9 @@ href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
               <div class="d-flex flex-column h-100">
                 <p class="mb-1 pt-2 text-bold">Hello, Welcome</p>
                 <h5 class="font-weight-bolder">{{ Auth::user()->name; }}</h5>
-                <p class="mb-5">You are login as </p>
+                <p class="mb-5">You are login as <b>{{ substr(Auth::user()->roles->pluck('name'),2,-2) }}</b> </p>
                 <a class="text-body text-sm font-weight-bold mb-0 icon-move-right mt-auto" href="javascript:;">
-                  Read More
+                  See Profile
                   <i class="fas fa-arrow-right text-sm ms-1" aria-hidden="true"></i>
                 </a>
               </div>

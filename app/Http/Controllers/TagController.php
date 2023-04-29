@@ -12,7 +12,7 @@ class TagController extends Controller
     {
         $tags = Tag::withCount('products')->get();
 
-        return view('admin.tags.index', compact('tags'));
+        return view('product-management.tag_index', compact('tags'));
     }
 
     /**
@@ -22,7 +22,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        return view('admin.tags.create');
+        return view('product-management.tag_create');
     }
 
     /**
@@ -35,7 +35,7 @@ class TagController extends Controller
     {
         Tag::create($request->validated());
 
-        return redirect()->route('admin.tags.index')->with([
+        return redirect()->route('tags.index')->with([
             'message' => 'Success Created !',
             'type' => 'success'
         ]);
@@ -49,7 +49,7 @@ class TagController extends Controller
      */
     public function edit(Tag $tag)
     {
-        return view('admin.tags.edit', compact('tag'));
+        return view('product-management.tag_edit', compact('tag'));
     }
 
     /**
@@ -63,7 +63,7 @@ class TagController extends Controller
     {
         $tag->update($request->validated());
 
-        return redirect()->route('admin.tags.index')->with([
+        return redirect()->route('tags.index')->with([
             'message' => 'Success Updated !',
             'type' => 'info'
         ]);
