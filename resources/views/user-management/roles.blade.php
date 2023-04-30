@@ -42,7 +42,7 @@
                                 @endcan
                                 @can('role-delete')
                                     {!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $role->id],'style'=>'display:inline']) !!}
-                                        {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!} <i class="fa fa-trash"></i> 
+                                        {{ Form::button('<i class="fa fa-trash" aria-hidden="true"></i>', ['class' => 'btn btn-danger btn-lg', 'type' => 'submit']) }}
                                     {!! Form::close() !!}
                                 @endcan
                             </td>

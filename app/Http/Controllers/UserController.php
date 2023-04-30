@@ -9,6 +9,7 @@ use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Cache;
 
 class UserController extends Controller
 {
@@ -18,12 +19,17 @@ class UserController extends Controller
         $data = User::orderBy('id','DESC')->paginate(5);
         return view('user-management.index',compact('data'));
     }
+   
+    public function profile()
+    {
+        return view('user-management.profile');
+    }
     
 
     public function create()
     {
         $roles = Role::pluck('name','name')->all();
-        return view('user-management.create',compact('roles'));
+        return view('user-management.user_add',compact('roles'));
     }
     
 
@@ -58,7 +64,7 @@ class UserController extends Controller
         $roles = Role::pluck('name','name')->all();
         $userRole = $user->roles->pluck('name','name')->all();
     
-        return view('user-management.edit',compact('user','roles','userRole'));
+        return view('user-management.user_edit',compact('user','roles','userRole'));
     }
 
     public function update(Request $request, $id)
@@ -92,6 +98,17 @@ class UserController extends Controller
         User::find($id)->delete();
         return redirect()->route('users.index')
                         ->with('success','User deleted successfully');
+    }
+
+    public function userOnlineStatus()
+    {
+        $users = User::all();
+        foreach ($users as $user) {
+            if (Cache::has('user-online' . $user->id))
+                echo $user->name . " is online. <br>";
+            else
+                echo $user->name . " is offline <br>";
+        }
     }
 }
 

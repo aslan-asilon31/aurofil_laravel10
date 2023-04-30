@@ -108,7 +108,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
                 <p class="mb-1 pt-2 text-bold">Hello, Welcome</p>
                 <h5 class="font-weight-bolder">{{ Auth::user()->name; }}</h5>
                 <p class="mb-5">You are login as <b>{{ substr(Auth::user()->roles->pluck('name'),2,-2) }}</b> </p>
-                <a class="text-body text-sm font-weight-bold mb-0 icon-move-right mt-auto" href="javascript:;">
+                <a class="text-body text-sm font-weight-bold mb-0 icon-move-right mt-auto" href="/user-profile">
                   See Profile
                   <i class="fas fa-arrow-right text-sm ms-1" aria-hidden="true"></i>
                 </a>
@@ -117,7 +117,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
             <div class="col-lg-5 ms-auto text-center mt-5 mt-lg-0">
               <div class="bg-gradient-primary border-radius-lg h-100">
                 <img src="backend/img/shapes/waves-white.svg" class="position-absolute h-100 w-50 top-0 d-lg-block d-none" alt="waves">
-                <div class="position-relative d-flex align-items-center justify-content-center h-100 animate__animated animate__bounce">
+                <div class="position-relative d-flex align-items-center justify-content-center h-100 animate__animated animate__bounce animate__infinite animate__slower">
                   <img class="w-100 position-relative z-index-2 pt-4 " src="backend/img/illustrations/rocket-white.png" alt="rocket">
                 </div>
               </div>

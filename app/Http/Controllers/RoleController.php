@@ -18,6 +18,11 @@ class RoleController extends Controller
          $this->middleware('permission:role-edit', ['only' => ['edit','update']]);
          $this->middleware('permission:role-delete', ['only' => ['destroy']]);
     }
+
+    public function sidebarRole()
+    {
+        
+    }
     
     public function index(Request $request)
     {

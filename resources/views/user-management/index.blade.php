@@ -6,6 +6,9 @@
       <div class="card mb-4">
         <div class="card-header pb-0">
           <h6>Authors table</h6>
+          <div class="pull-right">
+            <a class="btn btn-success" href="{{ route('users.create') }}"> <i class="fa fa-plus"></i> Add New User</a>
+        </div>
         </div>
         <div class="c px-0 pt-0 pb-2">
           <div class="table-responsive p-0">
@@ -43,7 +46,11 @@
                       <p class="text-xs text-secondary mb-0">Organization</p>
                     </td>
                     <td class="align-middle text-center text-sm">
-                      <span class="badge badge-sm bg-gradient-success">Online</span>
+                        @if(Cache::has('user-online' . $user->id))
+                        <span class="badge badge-sm bg-gradient-success">Online</span>
+                        @else
+                        <span class="badge badge-sm bg-gradient-danger">Offline</span>
+                        @endif
                     </td>
                     <td class="align-middle text-center">
                       <span class="text-secondary text-xs font-weight-bold">{{ $user->created_at }}</span>
