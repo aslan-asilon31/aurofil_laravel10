@@ -36,16 +36,28 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'image' => 'required|image|mimes:png,jpg,jpeg',
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|same:confirm-password',
             'roles' => 'required'
         ]);
+
+            //upload image
+        $image = $request->file('image');
+        $image->storeAs('public/users', $image->hashName());
     
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
     
-        $user = User::create($input);
+        // $user = User::create($input);
+        $user = User::create([
+            'image'     => $image->hashName(),
+            'name'     => $request->name,
+            'email'   => $request->email,
+            'password'   => md5($request->password),
+        ]);
+
         $user->assignRole($request->input('roles'));
     
         return redirect()->route('users.index')
@@ -75,6 +87,9 @@ class UserController extends Controller
             'password' => 'same:confirm-password',
             'roles' => 'required'
         ]);
+
+        //get data User by ID
+        // $user = User::findOrFail($user->id);
     
         $input = $request->all();
         if(!empty($input['password'])){ 
@@ -84,7 +99,34 @@ class UserController extends Controller
         }
     
         $user = User::find($id);
-        $user->update($input);
+        // $user->update($input);
+
+        if($request->file('image') == "") {
+
+            $user->update([
+                'name'     => $request->name,
+                'email'   => $request->email,
+                // 'password'   => $request->password
+            ]);
+    
+        } else {
+    
+            //hapus old image
+            Storage::disk('local')->delete('public/users/'.$user->image);
+    
+            //upload new image
+            $image = $request->file('image');
+            $image->storeAs('public/users', $image->hashName());
+    
+            $user->update([
+                'image'     => $image->hashName(),
+                'name'     => $request->name,
+                'email'   => $request->email,
+                'password'   => $request->password
+            ]);
+    
+        }
+
         DB::table('model_has_roles')->where('model_id',$id)->delete();
     
         $user->assignRole($request->input('roles'));

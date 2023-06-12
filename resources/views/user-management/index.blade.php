@@ -32,9 +32,9 @@
                     </td>
                     <td>
                       <div class="d-flex px-2 py-1">
-                        {{-- <div>
-                          <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3" alt="user1">
-                        </div> --}}
+                        <div>
+                          <img src="{{ Storage::url('public/users/').$user->image }}" class="avatar avatar-sm me-3" alt="user1">
+                        </div>
                         <div class="d-flex flex-column justify-content-center">
                           <h6 class="mb-0 text-sm">{{ $user->name }}</h6>
                           <p class="text-xs text-secondary mb-0">{{ $user->email }}</p>
@@ -42,7 +42,7 @@
                       </div>
                     </td>
                     <td>
-                      <p class="text-xs font-weight-bold mb-0">Manager</p>
+                      <p class="text-xs font-weight-bold mb-0">{{ substr(Auth::user()->roles->pluck('name'), 2, -2) }}</p>
                       <p class="text-xs text-secondary mb-0">Organization</p>
                     </td>
                     <td class="align-middle text-center text-sm">
