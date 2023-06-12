@@ -5,9 +5,6 @@
 <div class="">
 <ol>
 <a href="#screenshoot">💠 Screenshoot 💻</a>
-
-![ss1](https://github.com/aslan-asilon31/aurofil_laravel10_spatie/assets/116990574/db871bd6-9935-4596-883e-809289cf4337)
-
 </ol>
 
 <ol>
@@ -23,6 +20,8 @@
 
 <div class="" id="screenshoot">
 ## 💠 Screnshoot
+
+![ss1](https://github.com/aslan-asilon31/aurofil_laravel10_spatie/assets/116990574/db871bd6-9935-4596-883e-809289cf4337)
 
 </div>
 
