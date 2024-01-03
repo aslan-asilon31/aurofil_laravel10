@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
   
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
@@ -27,6 +28,10 @@ use App\Http\Controllers\visitor\HomeVisitorController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
+Route::get('/auth/{provider}', [SocialiteController::class, 'redirectToProvider']);
+Route::get('/auth/{provider}/callback', [SocialiteController::class, 'handleProvideCallback']);
+
 Route::get('/', [HomeVisitorController::class, 'index'])->name('home-visitor');
 
 Auth::routes();

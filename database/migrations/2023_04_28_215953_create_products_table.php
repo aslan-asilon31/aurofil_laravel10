@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('description');
             $table->text('details');
             $table->decimal('weight');
-            $table->foreignId('category_id')->constrained()->cascadeOnDelete();
+            $table->string('category_id');
             $table->timestamps();
         });
     }

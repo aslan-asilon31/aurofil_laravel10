@@ -15,6 +15,11 @@ class User extends Authenticatable
     use HasRoles;
     
 
+    public function socialAccounts()
+    {
+        return $this->hasMany(SocialAccount::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *
